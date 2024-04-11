@@ -1,0 +1,9 @@
+{
+  "parent": "minecraft:block/cube_bottom_top_inner_faces",
+  "textures": {
+    "bottom": "hylianraids:block/summoner_bottom",
+    "side": "hylianraids:block/summoner_side_inactive",
+    "top": "hylianraids:block/summoner_top_inactive"
+  },
+  "render_type": "cutout"
+}

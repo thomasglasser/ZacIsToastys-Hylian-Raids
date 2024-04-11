@@ -1,0 +1,22 @@
+{
+  "variants": {
+    "trial_spawner_state=active": {
+      "model": "hylianraids:block/summoner_active"
+    },
+    "trial_spawner_state=cooldown": {
+      "model": "hylianraids:block/summoner"
+    },
+    "trial_spawner_state=ejecting_reward": {
+      "model": "hylianraids:block/summoner_ejecting_reward"
+    },
+    "trial_spawner_state=inactive": {
+      "model": "hylianraids:block/summoner"
+    },
+    "trial_spawner_state=waiting_for_players": {
+      "model": "hylianraids:block/summoner_active"
+    },
+    "trial_spawner_state=waiting_for_reward_ejection": {
+      "model": "hylianraids:block/summoner_active"
+    }
+  }
+}
