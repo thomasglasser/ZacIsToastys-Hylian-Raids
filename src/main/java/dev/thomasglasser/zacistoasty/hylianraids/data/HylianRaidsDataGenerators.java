@@ -2,6 +2,7 @@ package dev.thomasglasser.zacistoasty.hylianraids.data;
 
 import dev.thomasglasser.zacistoasty.hylianraids.HylianRaids;
 import dev.thomasglasser.zacistoasty.hylianraids.data.blockstates.HylianRaidsBlockStates;
+import dev.thomasglasser.zacistoasty.hylianraids.data.lang.HylianRaidsEnUsLanguageProvider;
 import dev.thomasglasser.zacistoasty.hylianraids.data.tags.HylianRaidsBiomeTagsProvider;
 import dev.thomasglasser.zacistoasty.hylianraids.world.level.levelgen.structure.HylianRaidsStructures;
 import dev.thomasglasser.zacistoasty.hylianraids.world.level.levelgen.structure.placement.HylianRaidsStructureSets;
@@ -43,5 +44,6 @@ public class HylianRaidsDataGenerators
 
 		// Client
 		generator.addProvider(includeClient, new HylianRaidsBlockStates(output, existingFileHelper));
+		generator.addProvider(includeClient, new HylianRaidsEnUsLanguageProvider(output));
 	}
 }
