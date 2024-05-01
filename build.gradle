@@ -25,6 +25,21 @@ repositories {
             includeGroupAndSubgroups 'net.tslat.smartbrainlib'
         }
     }
+    maven {
+        name = "Modrinth"
+        url = "https://api.modrinth.com/maven"
+        content {
+            includeGroupAndSubgroups 'maven.modrinth'
+        }
+    }
+    maven {
+        name = "Cloth Config"
+        url "https://maven.shedaniel.me/"
+        content {
+            includeGroupAndSubgroups 'me.shedaniel'
+            includeGroupAndSubgroups 'dev.architectury'
+        }
+    }
 
     mavenLocal()
 }
@@ -66,12 +81,24 @@ runs {
 
 sourceSets.main.resources { srcDir 'src/generated/resources' }
 
+// Sets up a dependency configuration called 'localRuntime'.
+// This configuration should be used instead of 'runtimeOnly' to declare
+// a dependency that will be present for runtime testing but that is
+// "optional", meaning it will not be pulled by dependents of this mod.
+configurations {
+    runtimeClasspath.extendsFrom localRuntime
+}
 
 dependencies {
     implementation "net.neoforged:neoforge:${neo_version}"
 
     implementation "net.tslat.smartbrainlib:SmartBrainLib-neoforge-${minecraft_version}:${sbl_version}"
     implementation "software.bernie.geckolib:geckolib-neoforge-${minecraft_version}:${geckolib_version}"
+
+    // Runtime
+    localRuntime  "maven.modrinth:jade:${jade_version}"
+    localRuntime  "me.shedaniel:RoughlyEnoughItems-neoforge:$rei_version"
+    localRuntime  "me.shedaniel.cloth:cloth-config-neoforge:$cloth_config_version"
 }
 
 

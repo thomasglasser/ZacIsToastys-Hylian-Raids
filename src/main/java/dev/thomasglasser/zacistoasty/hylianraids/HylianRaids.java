@@ -4,7 +4,9 @@ import com.mojang.logging.LogUtils;
 import dev.thomasglasser.zacistoasty.hylianraids.client.HylianRaidsClientEvents;
 import dev.thomasglasser.zacistoasty.hylianraids.core.HylianRaidsCoreEvents;
 import dev.thomasglasser.zacistoasty.hylianraids.data.HylianRaidsDataGenerators;
+import dev.thomasglasser.zacistoasty.hylianraids.world.entity.HylianRaidsEntityEvents;
 import dev.thomasglasser.zacistoasty.hylianraids.world.entity.HylianRaidsEntityTypes;
+import dev.thomasglasser.zacistoasty.hylianraids.world.entity.ai.memory.HylianRaidsMemoryModuleTypes;
 import dev.thomasglasser.zacistoasty.hylianraids.world.item.HylianRaidsItems;
 import dev.thomasglasser.zacistoasty.hylianraids.world.level.block.HylianRaidsBlocks;
 import net.minecraft.resources.ResourceLocation;
@@ -29,14 +31,17 @@ public class HylianRaids
         HylianRaidsBlocks.BLOCKS.register(modEventBus);
         HylianRaidsItems.ITEMS.register(modEventBus);
         HylianRaidsEntityTypes.ENTITY_TYPES.register(modEventBus);
+        HylianRaidsMemoryModuleTypes.MEMORY_MODULE_TYPES.register(modEventBus);
 
         modEventBus.addListener(HylianRaidsDataGenerators::onGatherData);
 
         modEventBus.addListener(HylianRaidsCoreEvents::onCommonSetup);
+        modEventBus.addListener(HylianRaidsEntityEvents::onEntityAttributeCreation);
 
         if (FMLEnvironment.dist.isClient())
         {
             modEventBus.addListener(HylianRaidsClientEvents::onClientSetup);
+            modEventBus.addListener(HylianRaidsClientEvents::onRegisterRenderers);
         }
     }
 
