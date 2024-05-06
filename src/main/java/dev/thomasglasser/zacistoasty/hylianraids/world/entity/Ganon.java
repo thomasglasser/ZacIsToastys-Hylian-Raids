@@ -4,6 +4,7 @@ import dev.thomasglasser.zacistoasty.hylianraids.world.entity.ai.behavior.FloatA
 import dev.thomasglasser.zacistoasty.hylianraids.world.entity.ai.behavior.SummonMinions;
 import dev.thomasglasser.zacistoasty.hylianraids.world.entity.ai.memory.HylianRaidsMemoryModuleTypes;
 import it.unimi.dsi.fastutil.objects.ObjectArrayList;
+import net.minecraft.nbt.CompoundTag;
 import net.minecraft.network.chat.Component;
 import net.minecraft.network.chat.contents.TranslatableContents;
 import net.minecraft.network.syncher.EntityDataAccessor;
@@ -272,5 +273,21 @@ public class Ganon extends Monster implements PowerableMob, RangedAttackMob, Sma
 		} else {
 			return this.hasEffect(MobEffects.DIG_SLOWDOWN) ? base + (1 + this.getEffect(MobEffects.DIG_SLOWDOWN).getAmplifier()) * 2 : base;
 		}
+	}
+
+	@Override
+	public void addAdditionalSaveData(CompoundTag pCompound)
+	{
+		super.addAdditionalSaveData(pCompound);
+		pCompound.putBoolean("Powered", entityData.get(POWERED));
+		pCompound.putByte("FireballsReturned", entityData.get(FIREBALLS_RETURNED));
+	}
+
+	@Override
+	public void readAdditionalSaveData(CompoundTag pCompound)
+	{
+		super.readAdditionalSaveData(pCompound);
+		entityData.set(POWERED, pCompound.getBoolean("Powered"));
+		entityData.set(FIREBALLS_RETURNED, pCompound.getByte("FireballsReturned"));
 	}
 }
